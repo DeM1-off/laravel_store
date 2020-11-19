@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ImageUpload;
+use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\Attribute\AttributeController;
+use App\Http\Controllers\Admin\Attribute\AttributeGroupController;
+use App\Http\Controllers\Admin\Category\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('admin/product',ProductController::class);
+
+
+
+
+Route::resource('admin/attribute_group',AttributeGroupController::class);
+Route::resource('admin/attribute',AttributeController::class);
+
+Route::resource('admin/category',CategoryController::class);
