@@ -27,15 +27,15 @@
         </tr>
         @foreach ($attributes as $attribute)
             <tr>
-                <td>{{ $attribute->id }}</td>
+                <td>{{ $attribute->attribute_group_id }}</td>
                 <td>{{ $attribute->name_attribute_group }}</td>
                 <td>{{ $attribute->detail_attribute_group }}</td>
                 <td>
-                    <form action="{{ route('attribute_group.destroy',$attribute->id) }}" method="POST">
+                    <form action="{{ route('attribute_group.destroy',$attribute->attribute_group_id) }}" method="POST">
 
-                        <a class="btn btn-info" href="{{ route('attribute_group.show',$attribute->id) }}">Show</a>
+                        <a class="btn btn-info" href="{{ route('attribute_group.show',$attribute->attribute_group_id) }}">Show</a>
 
-                        <a class="btn btn-primary" href="{{ route('attribute_group.edit',$attribute->id) }}">Edit</a>
+                        <a class="btn btn-primary" href="{{ route('attribute_group.edit',$attribute->attribute_group_id) }}">Edit</a>
 
                         @csrf
                         @method('DELETE')

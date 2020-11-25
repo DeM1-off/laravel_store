@@ -28,10 +28,21 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Attribute group:</strong>
+                    <select name="attributes_group_id" id="attributes_group_id" style="width: 100%">
+                        @foreach($attributes as $attribute)
+                            <option value="{{$attribute->attribute_group_id}}">{{$attribute->name_attribute_group}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Name:</strong>
                     <input type="text" name="name_attribute" class="form-control" placeholder="Name">
                 </div>
             </div>
+
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">

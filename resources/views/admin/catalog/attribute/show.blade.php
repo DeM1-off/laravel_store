@@ -12,16 +12,25 @@
     </div>
 
     <div class="row">
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
                 {{ $attributes->name_attribute }}
             </div>
         </div>
+
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Details:</strong>
                 {{ $attributes->detail_attribute }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Attributes Group:</strong>
+                {{ $attributes->name_attribute_group }}
             </div>
         </div>
 

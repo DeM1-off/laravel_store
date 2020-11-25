@@ -29,4 +29,3 @@ Route::resource('admin/product',ProductController::class);
 Route::resource('admin/attribute_group',AttributeGroupController::class);
 Route::resource('admin/attribute',AttributeController::class);
 
-Route::resource('admin/category',CategoryController::class);

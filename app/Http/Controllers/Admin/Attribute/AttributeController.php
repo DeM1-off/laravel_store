@@ -3,11 +3,23 @@
 namespace App\Http\Controllers\Admin\Attribute;
 
 use App\Http\Controllers\Controller;
+use App\Models\Catalog\AttributeGroupModel;
 use App\Models\Catalog\AttributeModel;
+use App\Service\Attribute\AttributeServiceInterface;
 use Illuminate\Http\Request;
+
 
 class AttributeController extends Controller
 {
+
+
+    private $attributeService;
+
+    public function __construct(AttributeServiceInterface $attributeService)
+    {
+        $this->attributeService = $attributeService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +27,8 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        $attributes = AttributeModel::all();
+
+        $attributes = $this->attributeService->getAllInfo();
 
         return view('admin/catalog/attribute/index', compact('attributes'));
     }
@@ -27,7 +40,10 @@ class AttributeController extends Controller
      */
     public function create()
     {
-        return view('admin/catalog/attribute/create');
+        $attributes = $this->attributeService->getAttributeGroups();
+
+
+        return view('admin/catalog/attribute/create', compact('attributes'));
 
     }
 
@@ -39,15 +55,12 @@ class AttributeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name_attribute' => 'required',
-            'detail_attribute' => 'required'
-        ]);
+
 
         AttributeModel::create($request->all());
 
         return redirect()->route('attribute.index')
-            ->with('success','Product created successfully.');
+            ->with('success','Attribute created successfully.');
     }
 
     /**
@@ -58,9 +71,15 @@ class AttributeController extends Controller
      */
     public function show($id)
     {
-        $attributes = AttributeModel::findOrFail($id);
+        $attributess = $this->attributeService->showAttribute($id);
 
-        return view('admin/catalog/attribute/show',compact('attributes'));
+        foreach ($attributess as $key => $attribute) {
+
+            $attributes = $attribute;
+
+        }
+
+        return view('admin/catalog/attribute/show', compact('attributes'));
     }
 
     /**
@@ -71,9 +90,12 @@ class AttributeController extends Controller
      */
     public function edit($id)
     {
+
+        $attribute_group = $this->attributeService->getAttributeGroups();
+
         $attributes = AttributeModel::findOrFail($id);
 
-        return view('admin/catalog/attribute/edit', compact('attributes'));
+        return view('admin/catalog/attribute/edit', compact('attributes','attribute_group'));
     }
 
     /**
@@ -86,11 +108,10 @@ class AttributeController extends Controller
     public function update(Request $request, $id)
     {
         $attributes = AttributeModel::findOrFail($id);
-
         $attributes->update($request->all());
 
         return redirect()->route('attribute.index')
-            ->with('success','Category updated successfully');
+            ->with('success','Attribute updated successfully');
     }
 
     /**

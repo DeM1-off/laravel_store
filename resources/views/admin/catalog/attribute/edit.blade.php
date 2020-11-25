@@ -23,11 +23,21 @@
         </div>
     @endif
 
-    <form action="{{ route('attribute.update',$attributes->id) }}" method="POST">
+    <form action="{{ route('attribute.update',$attributes->attribute_id) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Attribute group:</strong>
+                    <select name="attributes_group_id" id="attributes_group_id" style="width: 100%">
+                        @foreach($attribute_group as $attribute)
+                            <option value="{{$attribute->attribute_group_id}}">{{$attribute->name_attribute_group}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name:</strong>

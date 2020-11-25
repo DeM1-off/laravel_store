@@ -14,7 +14,7 @@ class CreateAttributeGroupsTable extends Migration
     public function up()
     {
         Schema::create('attribute_groups', function (Blueprint $table) {
-            $table->id();
+            $table->id('attribute_group_id');
             $table->string('name_attribute_group');
             $table->text('detail_attribute_group');
             $table->timestamps();

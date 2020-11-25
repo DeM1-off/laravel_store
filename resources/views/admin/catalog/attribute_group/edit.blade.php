@@ -23,7 +23,7 @@
         </div>
     @endif
 
-    <form action="{{ route('attribute_group.update',$attributes->id) }}" method="POST">
+    <form action="{{ route('attribute_group.update',$attributes->attribute_group_id) }}" method="POST">
         @csrf
         @method('PUT')
 

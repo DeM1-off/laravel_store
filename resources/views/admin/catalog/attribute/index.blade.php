@@ -23,19 +23,21 @@
             <th>No</th>
             <th>Name attributes</th>
             <th>Details attributes</th>
+            <th>Attribute group</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($attributes as $attribute)
             <tr>
-                <td>{{ $attribute->id }}</td>
+                <td>{{ $attribute->attribute_id }}</td>
                 <td>{{ $attribute->name_attribute }}</td>
                 <td>{{ $attribute->detail_attribute }}</td>
+                <td>{{ $attribute->name_attribute_group }}</td>
                 <td>
-                    <form action="{{ route('attribute.destroy',$attribute->id) }}" method="POST">
+                    <form action="{{ route('attribute.destroy',$attribute->attribute_id) }}" method="POST">
 
-                        <a class="btn btn-info" href="{{ route('attribute.show',$attribute->id) }}">Show</a>
+                        <a class="btn btn-info" href="{{ route('attribute.show',$attribute->attribute_id) }}">Show</a>
 
-                        <a class="btn btn-primary" href="{{ route('attribute.edit',$attribute->id) }}">Edit</a>
+                        <a class="btn btn-primary" href="{{ route('attribute.edit',$attribute->attribute_id) }}">Edit</a>
 
                         @csrf
                         @method('DELETE')

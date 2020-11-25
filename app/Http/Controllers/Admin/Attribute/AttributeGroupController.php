@@ -46,7 +46,7 @@ class AttributeGroupController extends Controller
         AttributeGroupModel::create($request->all());
 
         return redirect()->route('attribute_group.index')
-            ->with('success','Product created successfully.');
+            ->with('success','Attribute created successfully.');
     }
 
     /**
@@ -70,6 +70,8 @@ class AttributeGroupController extends Controller
      */
     public function edit($id)
     {
+
+
         $attributes = AttributeGroupModel::findOrFail($id);
 
         return view('admin/catalog/attribute_group/edit', compact('attributes'));
@@ -89,7 +91,7 @@ class AttributeGroupController extends Controller
         $attributes->update($request->all());
 
         return redirect()->route('attribute_group.index')
-            ->with('success','Category updated successfully');
+            ->with('success','Attribute updated successfully');
     }
 
     /**
