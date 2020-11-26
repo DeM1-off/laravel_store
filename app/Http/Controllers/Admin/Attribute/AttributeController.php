@@ -13,8 +13,15 @@ class AttributeController extends Controller
 {
 
 
+    /**
+     * @var AttributeServiceInterface
+     */
     private $attributeService;
 
+    /**
+     * AttributeController constructor.
+     * @param AttributeServiceInterface $attributeService
+     */
     public function __construct(AttributeServiceInterface $attributeService)
     {
         $this->attributeService = $attributeService;

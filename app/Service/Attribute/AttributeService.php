@@ -13,13 +13,17 @@ class AttributeService implements AttributeServiceInterface
 {
 
 
-
-
+    /**
+     * @return Collection|null
+     */
     public function getAttributeGroups(): ?Collection
     {
         return AttributeGroupModel::all();
     }
 
+    /**
+     * @return \Illuminate\Contracts\Pagination\Paginator|mixed
+     */
     public function getAllInfo()
     {
 
@@ -28,7 +32,10 @@ class AttributeService implements AttributeServiceInterface
         return $attributes;
     }
 
-
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function showAttribute($id)
     {
         $selects = AttributeModel::where('attributes.attribute_id', $id)

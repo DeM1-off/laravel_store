@@ -13,8 +13,15 @@ class ProductController extends Controller
 {
 
 
+    /**
+     * @var ProductServiceIntarface
+     */
     private $productService;
 
+    /**
+     * ProductController constructor.
+     * @param ProductServiceIntarface $productService
+     */
     public function __construct(ProductServiceIntarface $productService)
     {
         $this->productService = $productService;
@@ -69,9 +76,7 @@ class ProductController extends Controller
     public function show($id)
     {
 
-
-        $this->productService->updateProduct($request, $id);
-
+        $products = ProductModel::findOrFail($id);
 
         return view('admin/catalog/product/show',compact('products'));
 

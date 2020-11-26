@@ -17,8 +17,15 @@ interface AttributeServiceInterface
     public function getAttributeGroups(): ?Collection;
 
 
+    /**
+     * @return mixed
+     */
     public function getAllInfo();
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function showAttribute($id);
 
 
