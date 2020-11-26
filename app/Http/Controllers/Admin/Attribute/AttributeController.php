@@ -56,6 +56,11 @@ class AttributeController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'name_attribute' => 'required',
+            'detail_attribute' => 'required',
+            'attributes_group_id' => 'required'
+        ]);
 
         AttributeModel::create($request->all());
 

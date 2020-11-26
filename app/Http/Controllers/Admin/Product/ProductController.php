@@ -3,11 +3,24 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Catalog\ProductAttributeModel;
+use App\Service\Product\ProductServiceIntarface;
 use Illuminate\Http\Request;
 use App\Models\Catalog\ProductModel;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+
+
+    private $productService;
+
+    public function __construct(ProductServiceIntarface $productService)
+    {
+        $this->productService = $productService;
+    }
+
+
     /**
      * Display a listing of the resource.ro
      *
@@ -15,7 +28,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = ProductModel::all();
+        $products = ProductModel::simplePaginate(5);
 
         return view('admin/catalog/product/index', compact('products'));
 
@@ -40,13 +53,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
-            'price' => 'required'
-        ]);
 
-        ProductModel::create($request->all());
+       $this->productService->createProduct($request);
 
         return redirect()->route('product.index')
             ->with('success','Product created successfully.');
@@ -61,7 +69,9 @@ class ProductController extends Controller
     public function show($id)
     {
 
-        $products = ProductModel::findOrFail($id);
+
+        $this->productService->updateProduct($request, $id);
+
 
         return view('admin/catalog/product/show',compact('products'));
 
@@ -88,13 +98,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $products = ProductModel::findOrFail($id);
 
-        $products->update($request->all());
+       $this->productService->updateProduct($request, $id);
 
         return redirect()->route('product.index')
             ->with('success','Product updated successfully');
-
 
     }
 

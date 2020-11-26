@@ -20,7 +20,7 @@ class AttributeModel extends Model
     ];
 
 
-    public function attributeGroup(): BelongsTo
+    public function attributeProduct(): BelongsTo
     {
         return $this->belongsTo(AttributeGroupModel::class);
     }

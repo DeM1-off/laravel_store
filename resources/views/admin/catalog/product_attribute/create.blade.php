@@ -6,7 +6,7 @@
                 <h2>Add New Product</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('product.index') }}" > Back</a>
+                <a class="btn btn-primary" href="{{ route('product_attribute.index') }}" > Back</a>
             </div>
         </div>
     </div>
@@ -22,32 +22,27 @@
         </div>
     @endif
 
-    <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('product_attribute.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Name:</strong>
-                    <input type="text" name="name" class="form-control" placeholder="Name">
+                    <select name="attribute_id" id="attributes_group_id" style="width: 100%">
+                        @foreach($attributes as $attribute)
+                            <option value="{{$attribute->attribute_id}}">{{$attribute->name_attribute}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
+
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Price:</strong>
-                    <input type="number" name="price" class="form-control" placeholder="Price">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Detail:</strong>
-                    <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Image:</strong>
-                    <input type="file" name="image" class="form-control" placeholder="imagephp">
+                    <select name="product_id" id="attributes_group_id" style="width: 100%">
+                        @foreach($products as $product)
+                            <option value="{{$product->product_id}}">{{$product->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

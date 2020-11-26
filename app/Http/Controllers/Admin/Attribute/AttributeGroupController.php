@@ -15,7 +15,7 @@ class AttributeGroupController extends Controller
      */
     public function index()
     {
-        $attributes = AttributeGroupModel::all();
+        $attributes = AttributeGroupModel::simplePaginate(5);
 
         return view('admin/catalog/attribute_group/index', compact('attributes'));
     }

@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\Attribute\AttributeController;
 use App\Http\Controllers\Admin\Attribute\AttributeGroupController;
 use App\Http\Controllers\Admin\Category\CategoryController;
-
+use App\Http\Controllers\Admin\Product\ProductAttributeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,8 +23,7 @@ Route::get('/', function () {
 });
 Route::resource('admin/product',ProductController::class);
 
-
-
+Route::resource('admin/product_attribute',ProductAttributeController::class);
 
 Route::resource('admin/attribute_group',AttributeGroupController::class);
 Route::resource('admin/attribute',AttributeController::class);

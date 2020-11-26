@@ -23,4 +23,9 @@ class AttributeGroupModel extends Model
         return $this->hasMany(AttributeModel::class);
     }
 
+    public function productAttribute(): HasMany
+    {
+        return $this->hasMany(AttributeModel::class);
+    }
+
 }

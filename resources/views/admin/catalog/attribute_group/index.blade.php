@@ -47,6 +47,6 @@
         @endforeach
     </table>
 
-    {{--    {!! $products->links() !!}--}}
+        {!! $attributes->links() !!}
 
 @endsection
